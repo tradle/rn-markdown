@@ -8,7 +8,8 @@ import {
 
 import createMarkdownRenderer from './markdown'
 
-const Markdown = createMarkdownRenderer()
+// pass in `marked` opts, e.g. gfm: true for Github Flavored Markdown
+const Markdown = createMarkdownRenderer({ gfm: false })
 
 // example partially from react-native-simple-markdown
 export default class MarkdownExample extends Component {

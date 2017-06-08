@@ -25,7 +25,8 @@ import {
 
 import createMarkdownRenderer from 'rn-markdown'
 
-const Markdown = createMarkdownRenderer()
+// pass in `marked` opts, e.g. gfm: true for Github Flavored Markdown
+const Markdown = createMarkdownRenderer({ gfm: false })
 // override individual renderers with:
 // Markdown.renderer.text = MyTextComponent
 // Markdown.renderer.image = MyImageComponent
