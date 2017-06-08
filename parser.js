@@ -147,22 +147,20 @@ Parser.prototype.lex = function lex (src) {
     // reflink, nolink
     if ((cap = inline.reflink.exec(src))
         || (cap = inline.nolink.exec(src))) {
+      src = src.substring(cap[0].length);
+      link = (cap[2] || cap[1]).replace(/\s+/g, ' ');
+      link = this.links[link.toLowerCase()];
+      if (!link || !link.href) {
+        tokens.push({
+          type: 'text',
+          text: cap[0].charAt(0)
+        })
 
-      // TODO: uncomment and figure out the below
-      tokens.push({
-        type: 'text',
-        text: src
-      })
+        src = cap[0].substring(1) + src;
+        continue;
+      }
 
-      // src = src.substring(cap[0].length);
-      // link = (cap[2] || cap[1]).replace(/\s+/g, ' ');
-      // link = this.links[link.toLowerCase()];
-      // if (!link || !link.href) {
-      //   out += cap[0].charAt(0);
-      //   src = cap[0].substring(1) + src;
-      //   continue;
-      // }
-      // tokens.push(this.outputLink(cap, link));
+      tokens.push(this.outputLink(cap, link));
       continue;
     }
 
