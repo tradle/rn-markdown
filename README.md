@@ -2,9 +2,17 @@
 
 Markdown rendering component, using the parser from [marked](https://github.com/chjj/marked).
 
-The example below, and the component styles were adapted from [react-native-simple-markdown](https://github.com/CharlesMangwa/react-native-simple-markdown).
+## Install
+
+```sh
+npm install --save rn-markdown
+# or
+yarn add rn-markdown
+```
 
 ## Usage
+
+The example below, and the component styles were adapted from [react-native-simple-markdown](https://github.com/CharlesMangwa/react-native-simple-markdown).
 
 ```js
 import React, { Component } from 'react'
@@ -75,3 +83,7 @@ uh oh...numbered list coming up
   }
 }
 ```
+
+## Contributing
+
+This is a work in progress and contributions are welcome!
