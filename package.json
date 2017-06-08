@@ -16,6 +16,12 @@
     "react-component",
     "react",
     "markdown",
-    "marked"
-  ]
+    "marked",
+    "ios",
+    "android"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tradle/rn-markdown"
+  }
 }
