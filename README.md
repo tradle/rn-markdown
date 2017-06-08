@@ -20,28 +20,35 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Alert,
+  TouchableHighlight
 } from 'react-native'
 
 import createMarkdownRenderer from 'rn-markdown'
 
 // pass in `marked` opts, e.g. gfm: true for Github Flavored Markdown
 const Markdown = createMarkdownRenderer({ gfm: false })
-// override individual renderers with:
-// Markdown.renderer.text = MyTextComponent
-// Markdown.renderer.image = MyImageComponent
-// etc.
 
+// define a custom renderer for links
+Markdown.renderer.link = props => {
+  const { markdown } = props
+  const { href } = markdown
+  return (
+    <TouchableHighlight onPress={() => Alert.alert('check out this hot href', href)}>
+      <View>
+        {props.children}
+      </View>
+    </TouchableHighlight>
+  )
+}
+
+// example partially from react-native-simple-markdown
 export default class MarkdownExample extends Component {
   render() {
-    const text = 
+    const text =
 `
 You can **emphasize**
-
-You can write code:
-
-    var blah = 1;
-    var haha = 2;
 
 You can even [**link your website**](http://carlito.ninja) or if you prefer: [email somebody](mailto:email@somebody.com)
 
@@ -69,13 +76,21 @@ uh oh...numbered list coming up
 
 1. a
 1. b
-  - more frakking lists
+  - with an unnumbered list inside
   - blah
-    - blah blah, damn it!
+    - blah blah
+
+more frakking lists
+
+- blah
+- blah1
+- blah2
+  - blah2.1
+  - blah2.2
+    - blah2.2.1
+    - blah2.2.2
 `
 
-    // the default Markdown container is scrollview
-    // override with Markdown.renderer.container = MyMarkdownContainerComponent
     return (
       <Markdown contentContainerStyle={styles.container} markdownStyles={markdownStyles}>
         {text}
@@ -83,6 +98,36 @@ uh oh...numbered list coming up
     )
   }
 }
+
+const markdownStyles = {
+  container: {
+    paddingLeft: 10
+  },
+  heading1: {
+    fontSize: 24,
+    color: 'purple',
+  },
+  link: {
+    color: 'pink',
+  },
+  mail_to: {
+    color: 'orange',
+  },
+  text: {
+    color: '#555555',
+  },
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  }
+})
+
+AppRegistry.registerComponent('MarkdownExample', () => MarkdownExample)
 ```
 
 ## Contributing

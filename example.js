@@ -3,13 +3,28 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Alert,
+  TouchableHighlight
 } from 'react-native'
 
 import createMarkdownRenderer from './markdown'
 
 // pass in `marked` opts, e.g. gfm: true for Github Flavored Markdown
 const Markdown = createMarkdownRenderer({ gfm: false })
+
+// define a custom renderer for links
+Markdown.renderer.link = props => {
+  const { markdown } = props
+  const { href } = markdown
+  return (
+    <TouchableHighlight onPress={() => Alert.alert('check out this hot href', href)}>
+      <View>
+        {props.children}
+      </View>
+    </TouchableHighlight>
+  )
+}
 
 // example partially from react-native-simple-markdown
 export default class MarkdownExample extends Component {
@@ -66,15 +81,6 @@ more frakking lists
     )
   }
 }
-
-// const headingStyles = {
-//   '1': {
-//     fontSize: 24
-//   },
-//   '2': {
-//     fontSize: 20
-//   },
-// }
 
 const markdownStyles = {
   container: {
