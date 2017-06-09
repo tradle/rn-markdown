@@ -39,7 +39,7 @@ function readNextGroup (tokens) {
   })
 
   while (true) {
-    group = readNextGroup(tokens)
+    let group = readNextGroup(tokens)
     if (!group) break
 
     group.parent = parent
