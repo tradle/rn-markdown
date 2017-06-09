@@ -11,23 +11,29 @@ import { parse } from './parser'
 import DEFAULT_STYLES from './styles'
 import pick from 'object.pick'
 import omit from 'object.omit'
-import TextStylePropTypes from 'react-native/Libraries/Text/TextStylePropTypes'
-import ViewStylePropTypes from 'react-native/Libraries/Components/View/ViewStylePropTypes'
+import {
+  text as TextStyleProps,
+  view as ViewStyleProps
+} from './style-props'
 
-const packageName = require('./package').name
+import {
+  name as packageName
+} from './package.json'
+
 const log = (...args) => {
   args.unshift(packageName)
   return console.log(...args)
 }
 
-const TextStyleProps = Object.keys(TextStylePropTypes)
 const TextOnlyStyleProps = (function () {
   const props = {}
-  for (let p in TextStylePropTypes) {
-    if (!(p in ViewStylePropTypes)) {
-      props[p] = true
-    }
-  }
+  TextStyleProps.forEach(prop => {
+    props[prop] = true
+  })
+
+  ViewStyleProps.forEach(prop => {
+    delete props[prop]
+  })
 
   return Object.keys(props)
 }())
