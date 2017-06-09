@@ -1,6 +1,6 @@
 {
   "name": "rn-markdown",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "markdown.js",
   "description": "basic markdown renderer for react-native using the great [marked](https://github.com/chjj/marked) parser",
   "dependencies": {
