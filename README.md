@@ -2,6 +2,8 @@
 
 Markdown rendering component, using the parser from [marked](https://github.com/chjj/marked).
 
+[play](https://tradle.github.io/rn-markdown-playground/) with the [react-native-web](https://github.com/necolas/react-native-web) version
+
 ## Install
 
 ```sh
