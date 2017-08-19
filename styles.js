@@ -1,5 +1,7 @@
 module.exports = {
-  container: {},
+  container: {
+    whiteSpace: 'pre'
+  },
   view: {},
   blockquote_section: {
     flexDirection: "row"
