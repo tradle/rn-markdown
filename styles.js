@@ -1,7 +1,7 @@
+import { Platform } from 'react-native'
+
 module.exports = {
-  container: {
-    whiteSpace: 'pre'
-  },
+  container: Platform.web ? { whiteSpace: 'pre' } : {},
   view: {},
   blockquote_section: {
     flexDirection: "row"
