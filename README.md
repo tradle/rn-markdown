@@ -34,7 +34,7 @@ const Markdown = createMarkdownRenderer({ gfm: false })
 
 // define a custom renderer for links
 Markdown.renderer.link = props => {
-  const { markdown } = props
+  const { markdown, passThroughProps } = props
   const { href } = markdown
   return (
     <TouchableHighlight onPress={() => Alert.alert('check out this hot href', href)}>
@@ -94,7 +94,7 @@ more frakking lists
 `
 
     return (
-      <Markdown contentContainerStyle={styles.container} markdownStyles={markdownStyles}>
+      <Markdown contentContainerStyle={styles.container} markdownStyles={markdownStyles} passThroughProps={{ passMeThrough: 'to the child renderer components' }}>
         {text}
       </Markdown>
     )

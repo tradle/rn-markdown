@@ -85,9 +85,9 @@ Parser.prototype.lex = function lex (src) {
       src = src.substring(cap[0].length);
       if (cap[2] === '@') {
         text = cap[1].charAt(6) === ':'
-          ? mangle(cap[1].substring(7))
-          : mangle(cap[1]);
-        href = mangle('mailto:') + text;
+          ? this.mangle(cap[1].substring(7))
+          : this.mangle(cap[1]);
+        href = this.mangle('mailto:') + text;
       } else {
         text = cap[1];
         href = text;

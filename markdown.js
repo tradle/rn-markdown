@@ -73,7 +73,7 @@ const DEFAULT_RENDERERS = {
 }
 
 const DEFAULT_CUSTOM_RENDERERS = {
-  image: ({ ...props, markdown }) => {
+  image: ({ markdown, ...props }) => {
     return <Image source={{ uri: markdown.href }} {...props} />
   },
   list: List
