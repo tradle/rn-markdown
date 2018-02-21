@@ -85,7 +85,7 @@ export default function createMarkdownRenderer (markedOpts) {
     ...DEFAULT_CUSTOM_RENDERERS
   }
 
-  function renderGroup ({ markdown, markdownStyles={}, style, key }) {
+  function renderGroup ({ markdown, markdownStyles={}, style, key, passThroughProps }) {
     const { type, children, ordered, depth, text } = markdown
 
     let El = typeToRenderer[type]
@@ -112,7 +112,8 @@ export default function createMarkdownRenderer (markedOpts) {
         return renderGroup({
           markdown: group,
           markdownStyles,
-          key: `child-${i}`
+          key: `child-${i}`,
+          passThroughProps
         })
       })
     }
@@ -121,7 +122,8 @@ export default function createMarkdownRenderer (markedOpts) {
       style: flatten(elStyles),
       // styles,
       // markdown,
-      key
+      key,
+      passThroughProps
     }
 
     if (El !== DEFAULT_RENDERERS[type]) {
@@ -135,9 +137,9 @@ export default function createMarkdownRenderer (markedOpts) {
     )
   }
 
-  const Markdown = ({ children, ...rest }) => {
+  const Markdown = ({ children, passThroughProps={}, ...rest }) => {
     const parsed = parse(children, markedOpts)
-    return renderGroup({ markdown: parsed, ...rest })
+    return renderGroup({ markdown: parsed, passThroughProps, ...rest })
   }
 
   // allow override renderers and textContainers for this markdown instance
