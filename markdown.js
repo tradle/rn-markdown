@@ -4,11 +4,13 @@ import {
   View,
   Text,
   ScrollView,
-  Image
 } from 'react-native'
 
 import { parse } from './parser'
 import DEFAULT_STYLES from './styles'
+import List from './components/list'
+import Image from './components/image'
+import LineBreak from './components/linebreak'
 import pick from 'object.pick'
 import omit from 'object.omit'
 import {
@@ -40,25 +42,6 @@ const TextOnlyStyleProps = (function () {
 
 const DEFAULT_PADDING = 10
 
-const List = props => {
-  const { children, markdown, ...rest } = props
-  return (
-    <View {...rest}>
-      {children.map(renderChild)}
-    </View>
-  )
-
-  function renderChild (child, i) {
-    const prefixText = markdown.ordered ? `${i + 1}. ` : '\u2022 '
-    return (
-      <View style={{flexDirection:'row', flex: 1}} key={`list-el-${i}`}>
-        <Text>{prefixText}</Text>
-        {child}
-      </View>
-    )
-  }
-}
-
 // const WrappedText = ({ ...props })  => {
 //   return (
 //     <View>
@@ -69,13 +52,12 @@ const List = props => {
 
 const DEFAULT_RENDERERS = {
   container: ScrollView,
-  text: Text
+  text: Text,
+  br: LineBreak,
 }
 
 const DEFAULT_CUSTOM_RENDERERS = {
-  image: ({ markdown, ...props }) => {
-    return <Image source={{ uri: markdown.href }} {...props} />
-  },
+  image: Image,
   list: List
 }
 

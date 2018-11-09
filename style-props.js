@@ -163,5 +163,6 @@ exports.text = [
   "textDecorationLine",
   "textDecorationStyle",
   "textDecorationColor",
-  "writingDirection"
+  "whiteSpace",
+  "writingDirection",
 ]

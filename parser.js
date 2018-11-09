@@ -281,9 +281,35 @@ Parser.prototype.mangle = function mangle (text) {
   return out;
 }
 
+const shallowFlatten = (arr, el) => arr.concat(el)
+const splitParagraphs = tokens => tokens.map(token => {
+  if (token.type === 'paragraph') {
+    return token.text.split('\n').map(text => ({ type: text, text }))
+  }
+
+  return token
+})
+.reduce(shallowFlatten, [])
+
+const normalizeLineBreaks = tokens => tokens.map((token, i) => {
+  if (token.type === 'space') {
+    return { type: 'br' }
+  }
+
+  if (token.type === 'text') {
+    const next = tokens[i + 1]
+    if (next && next.type === 'text') {
+      return [token, { type: 'br' }]
+    }
+  }
+
+  return token
+})
+.reduce(shallowFlatten, [])
 
 Parser.prototype.parse = function parse () {
-  const tokens = marked.lexer(this.text, this.options)
+  let tokens = marked.lexer(this.text, this.options)
+  tokens = normalizeLineBreaks(splitParagraphs(tokens))
   this.links = tokens.links
 
   const expanded = tokens.map(token => {

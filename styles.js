@@ -1,7 +1,7 @@
 import { Platform } from 'react-native'
 
 module.exports = {
-  container: Platform.web ? { whiteSpace: 'pre' } : {},
+  container: Platform.web ? { whiteSpace: 'pre-wrap' } : {},
   view: {},
   blockquote_section: {
     flexDirection: "row"
@@ -67,7 +67,6 @@ module.exports = {
     textDecorationLine: "underline"
   },
   list: {
-    paddingLeft: 10
   },
   list_item: {
     flexDirection: "column"
@@ -126,7 +125,8 @@ module.exports = {
     padding: 5
   },
   text: {
-    color: "#222222"
+    color: "#222222",
+    whiteSpace: 'normal',
   },
   u: {
     borderColor: "#222222",
@@ -135,5 +135,5 @@ module.exports = {
   video: {
     width: 300,
     height: 300
-  }
+  },
 }
