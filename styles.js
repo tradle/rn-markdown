@@ -1,7 +1,18 @@
 import { Platform } from 'react-native'
 
+const createWhiteSpaceProps = whiteSpace => Platform.select({
+  web: {
+    whiteSpace,
+  },
+  default: {},
+})
+
+const normalWhitespace = createWhiteSpaceProps('normal')
+
 module.exports = {
-  container: Platform.web ? { whiteSpace: 'pre-wrap' } : {},
+  container: {
+    ...normalWhitespace
+  },
   view: {},
   blockquote_section: {
     flexDirection: "row"
@@ -126,7 +137,7 @@ module.exports = {
   },
   text: {
     color: "#222222",
-    whiteSpace: 'normal',
+    ...normalWhitespace,
   },
   u: {
     borderColor: "#222222",
