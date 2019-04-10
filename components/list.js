@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { pre as preWhitespace } from '../white-space'
 
 const LOW_DOT = '.'
 const BULLET = '•'
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
   },
   listItemPrefix: {
     flex: 0,
-    whiteSpace: 'pre',
+    ...preWhitespace
   },
   listItemContent: {
     flex: 1,

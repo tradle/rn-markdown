@@ -1,13 +1,4 @@
-import { Platform } from 'react-native'
-
-const createWhiteSpaceProps = whiteSpace => Platform.select({
-  web: {
-    whiteSpace,
-  },
-  default: {},
-})
-
-const normalWhitespace = createWhiteSpaceProps('normal')
+import { normal as normalWhitespace } from './white-space'
 
 module.exports = {
   container: {
