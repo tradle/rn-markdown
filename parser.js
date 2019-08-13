@@ -309,8 +309,8 @@ const normalizeLineBreaks = tokens => tokens.map((token, i) => {
 
 Parser.prototype.parse = function parse () {
   let tokens = marked.lexer(this.text, this.options)
-  tokens = normalizeLineBreaks(splitParagraphs(tokens))
   this.links = tokens.links
+  tokens = normalizeLineBreaks(splitParagraphs(tokens))
 
   const expanded = tokens.map(token => {
     if (token.text) {
