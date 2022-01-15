@@ -4,7 +4,7 @@
   "main": "markdown.js",
   "description": "basic markdown renderer for react-native using the great [marked](https://github.com/chjj/marked) parser",
   "dependencies": {
-    "marked": "^0.3.6",
+    "marked": "^4.0.10",
     "object.omit": "^2.0.1",
     "object.pick": "^1.2.0"
   },
